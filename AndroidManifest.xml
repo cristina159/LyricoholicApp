@@ -15,11 +15,27 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/title_first_window" 
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> 
+        </activity>
+         <activity
+            android:name=".DetailsWindow"
+            android:label="@string/app_name">
+            <intent-filter >
+                <action  android:name="in.wptrafficanalyzer.DETAILSWINDOW"/>
+                <category  android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SongsListWindow"
+            android:label="@string/app_name">
+            <intent-filter >
+                <action  android:name="in.wptrafficanalyzer.SONGSLISTWINDOW"/>
+                <category  android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>

@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">Test</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    
+    <string name="title_first_window">LyricholicApp</string>
+    <string name="button_text">Search Lyrics</string>
+    <string name="enter_text">Insert lyrics</string>
+	
+    <string name="title_second_window">TEST - This is another activity starting by main activity</string>
 </resources>
