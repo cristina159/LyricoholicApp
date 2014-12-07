@@ -20,7 +20,7 @@ public class DetailsWindow extends Activity{
         	  if(MainActivity.foundSongs.size() == 1) //one song found
         		  song = MainActivity.foundSongs.get(0);
           
-	      textView.setText("Details for "+song.getTitle());
+	      textView.setText("Details for "+ song.getTitle() + "\n" + song.getArtistName() + "\n" + song.getAlbumName() + "\n" + song.getLyrics());
 	       		
     }
 }
