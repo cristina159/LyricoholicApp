@@ -163,7 +163,7 @@ public class TrackData {
     @SerializedName("track_name")
     private String trackName;
 
-     public String getTrack_spotify_id() {
+	public String getTrack_spotify_id() {
         return track_spotify_id;
     }
 
@@ -397,4 +397,5 @@ public class TrackData {
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
+	
 }

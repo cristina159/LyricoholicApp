@@ -63,6 +63,8 @@ public final class Constants {
      */
     public static final String QUERY_TRACK = "q_track";
 
+    public static final String QUERY_LYRICS = "q_lyrics";
+    
     /**
      * A constant field to denote the value of TRACK_ID in the KV mapping.
      */

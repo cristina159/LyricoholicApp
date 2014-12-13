@@ -91,8 +91,8 @@ public class MusixMatch {
 	 * @throws MusixMatchException
 	 *             if any error occur
 	 */
-	public List<Track> searchTracks(String q, String q_artist, String q_track,
-			int page, int pageSize, boolean f_has_lyrics)
+	public List<Track> searchTracks(String q, String q_artist, String q_track, String q_lyrics,
+			Integer page, Integer pageSize, boolean f_has_lyrics)
 			throws MusixMatchException {
 		List<Track> trackList = null;
 		TrackSeachMessage message = null;
@@ -102,6 +102,7 @@ public class MusixMatch {
 		params.put(Constants.QUERY, q);
 		params.put(Constants.QUERY_ARTIST, q_artist);
 		params.put(Constants.QUERY_TRACK, q_track);
+		params.put(Constants.QUERY_LYRICS, q_lyrics);
 		params.put(Constants.PAGE, page);
 		params.put(Constants.PAGE_SIZE, pageSize);
 

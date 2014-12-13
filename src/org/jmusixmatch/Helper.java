@@ -36,6 +36,9 @@ public final class Helper {
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			try {
+				if (entry.getValue() == null) {
+					continue;
+				}
 				paramString += entry.getKey()
 						+ "="
 						+ URLEncoder.encode(entry.getValue().toString(),

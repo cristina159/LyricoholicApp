@@ -1,5 +1,5 @@
 package com.example.test.model;
-// Alecs - complete
+
 public class Song {
 	    
 	private String title;
@@ -64,7 +64,7 @@ public class Song {
 	public void setLyrics(String lyrics){
 		this.lyrics = lyrics;
 	}
-
+	
     public int getImageResource(){
     	return this.imageID;
     }

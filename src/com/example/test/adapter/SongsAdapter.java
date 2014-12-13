@@ -60,7 +60,7 @@ public class SongsAdapter extends BaseAdapter{
 		else element = convertView;
 		
 		SongsHolder tag = (SongsHolder) element.getTag();
-		tag.songsName.setText(songs.get(position).getTitle());
+		tag.songsName.setText(songs.get(position).getArtistName() + " - " + songs.get(position).getTitle());
 		tag.songsImage.setImageResource(songs.get(position).getImageResource());
 		
 				
