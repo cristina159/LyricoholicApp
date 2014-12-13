@@ -2,14 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+	android:background="@drawable/background_details" 
+	>
+	
     <TextView
-
-        android:id="@+id/textViewSong"
+        android:id="@+id/textTrackName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_second_window"
-
+        android:text="@string/track_name"
+		android:textStyle="bold"
+		
         />
+    <TextView
+
+        android:id="@+id/textArtistName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/artist"
+		android:textStyle="bold"
+        />
+    <TextView
+
+        android:id="@+id/textAlbumName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/album"
+		android:textStyle="bold"
+        />
+    
+     <TextView
+
+        android:id="@+id/textMusicGenre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genre"
+        android:textStyle="bold"
+        />
+     
+      <TextView
+
+        android:id="@+id/textLyrics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lyrics"
+		android:maxLines="20"
+	    android:scrollbars="vertical"
+	    android:scrollbarStyle="insideOverlay"
+	    android:fadeScrollbars="true"
+	    android:fadingEdge="vertical"
+	    
+	    android:textStyle="bold"
+        />
+      
+    
 </LinearLayout>

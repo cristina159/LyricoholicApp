@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/welcome_image_1"
+    android:background="@drawable/background_welcome_2"
     tools:context="com.example.test.MainActivity" >
     
       <TextView
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="32sp"
-        android:textColor="#F00"
+        android:textColor="#006666"
         android:gravity="center"
         android:text="@string/title_first_window" />
 
@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewTitle"
         android:layout_below="@+id/textViewTitle"
-        android:textColor="#FFF"
+        
+        android:textColor="#000000"
         android:textStyle="bold"
         android:text="@string/button_text" />
       

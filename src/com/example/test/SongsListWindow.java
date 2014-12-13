@@ -70,7 +70,7 @@ public class SongsListWindow extends ListActivity{
 	      switch(item.getItemId()){
 	          case 1:{
 	        	  	songDetails = (Song)songsAdapter.getItem(info.position);
-	        	  		   	       		
+	        	  	 	       		
 	   	       		//open details window
 	   	       		startActivity(new Intent(getApplicationContext(), DetailsWindow.class));
 	             

@@ -9,5 +9,11 @@
 	<string name="enter_text">Insert lyrics</string>
    
 	
-    <string name="title_second_window">TEST - This is another activity starting by main activity</string>
+    <string name="track_name">TEST - This is another activity starting by main activity</string>
+    
+    <string name="artist">TEST - This is another activity starting by main activity</string>
+    <string name="album">TEST - This is another activity starting by main activity</string>
+    <string name="genre">TEST - This is another activity starting by main activity</string>
+    <string name="lyrics">TEST - This is another activity starting by main activity</string>
+    
 </resources>

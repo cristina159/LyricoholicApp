@@ -11,6 +11,7 @@ import com.example.test.adapter.*;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.NetworkInfo.DetailedState;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.view.Menu;
@@ -27,13 +28,11 @@ import android.view.View.OnClickListener;
 
 import com.example.test.R;
 
-
-
 public class MainActivity extends Activity {
 
 	String lyrics; //searched lyrics
 	static ArrayList<Song> foundSongs = new ArrayList<Song>(); //API results 
-
+	boolean isPressed;
 	MusixMatch mm = null;
 	
 	@Override
@@ -41,40 +40,42 @@ public class MainActivity extends Activity {
 		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mm = new MusixMatch("a16c65500d72a8f47240c87c3c091929");
-   	 	foundSongs.clear();
         
+        mm = new MusixMatch("a16c65500d72a8f47240c87c3c091929");
+           	 	
         OnClickListener searchBtnListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
             	 //SECOND WINDOW
             	 EditText eText = (EditText) findViewById(R.id.editTextLyrics);
             	 lyrics =  eText.getText().toString();
+            	 //clear foundSongs -
+            	 //ca mearga ce are andreea trebuie scos ca merge doar la a doua apasare de buton;
+            	 //so daca faci clear tocmai vei sterge ce a pus andreea din api
+            	 //foundSongs.clear();
             	 
             	//call api and put the results into foundSongs list
             	 new LongOperation().execute("");
             	 
-//            	 foundSongs.add(new Song("Always 1", R.drawable.ic_launcher, "", 1990));
-//            	 foundSongs.add(new Song("Always 2", R.drawable.ic_launcher, "", 1991));
-//            	 foundSongs.add(new Song("Always 3", R.drawable.ic_launcher, "", 1992));
-//                 foundSongs.add(new Song("Always 4", R.drawable.ic_launcher, "", 1993));
-//                 foundSongs.add(new Song("Always 5", R.drawable.ic_launcher, "", 1990));
-//                 foundSongs.add(new Song("Always 6", R.drawable.ic_launcher, "", 1991));
-//                 foundSongs.add(new Song("Always 7", R.drawable.ic_launcher, "", 1992));
-//                 foundSongs.add(new Song("Always 8", R.drawable.ic_launcher, "", 1993));
-//                 foundSongs.add(new Song("Always 9", R.drawable.ic_launcher, "", 1990));
-//                 foundSongs.add(new Song("Always 10", R.drawable.ic_launcher, "", 1991));
-//                 foundSongs.add(new Song("Always 11", R.drawable.ic_launcher, "", 1992));
-//                 foundSongs.add(new Song("Always 12", R.drawable.ic_launcher, "", 1993));
-//                 foundSongs.add(new Song("Always 13", R.drawable.ic_launcher, "", 1991));
-//                 foundSongs.add(new Song("Always 14", R.drawable.ic_launcher, "", 1992));
-//                 foundSongs.add(new Song("Always 15", R.drawable.ic_launcher, "", 1993));
-                 
-            	if (foundSongs.size() > 1)
+            	 //LongOperation op =  new LongOperation();
+            	 //op.execute("");
+            	 //while((AsyncTask.Status )op.getStatus() != AsyncTask.Status.FINISHED )
+            	
+            	 /*String photoName = "ic_launcher";
+            	 int imageID = getResources().getIdentifier(photoName, "drawable", getPackageName());
+            	 foundSongs.add (new Song("Always 1", "Versuri 1","Nume album 1", "Nume artist 1", 1, imageID));
+            	 foundSongs.add (new Song("Always 2", "Versuri 2","Nume album 2", "Nume artist 2", 2, imageID));
+            	 foundSongs.add (new Song("Always 3", "Versuri 3","Nume album 3", "Nume artist 3", 3, imageID));
+            	 foundSongs.add (new Song("Always 4", "Versuri 4","Nume album 4", "Nume artist 4", 4, imageID));
+            	 foundSongs.add (new Song("Always 5", "Versuri 5","Nume album 5", "Nume artist 5", 5, imageID));
+            	 foundSongs.add (new Song("Always 6", "Versuri 6","Nume album 6", "Nume artist 6", 6, imageID));
+            	 */
+            	if (foundSongs.size() > 1){
             		startActivity(new Intent(getApplicationContext(), SongsListWindow.class));
-            	else if(foundSongs.size() == 1)
+            	}
+            	else if(foundSongs.size() == 1){
             		startActivity(new Intent(getApplicationContext(), DetailsWindow.class));
+            	}
             	else  
             		Toast.makeText(getBaseContext(), "Not found!", Toast.LENGTH_LONG).show();
             	
@@ -139,10 +140,11 @@ public class MainActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			Track track_rsp = null;
+			
 			 try{
 				 track_rsp = mm.getMatchingTrack("Let It Be", "The Beatles");
 			 }catch (Exception e){
-				 
+				 System.out.println("exceptie");
 			 }
 			 
 			 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!11");
@@ -156,19 +158,21 @@ public class MainActivity extends Activity {
 			 }catch(Exception e){
 				 
 			 }
-			 System.out.println("--!!--" + lyrics_rsp.getLyricsBody());
-			 
-			Song recv_song = new Song(track_rsp.getTrack().getTrackName(), lyrics_rsp.getLyricsBody(), track_rsp.getTrack().getAlbumName(), track_rsp.getTrack().getArtistName(), track_rsp.getTrack().getTrackId());
+			 System.out.println(" --!!--" + lyrics_rsp.getLyricsBody());
+			
+			String photoName = "ic_launcher";
+        	int imageID = getResources().getIdentifier(photoName, "drawable", getPackageName());
+			Song recv_song = new Song(track_rsp.getTrack().getTrackName(), lyrics_rsp.getLyricsBody(), track_rsp.getTrack().getAlbumName(), track_rsp.getTrack().getArtistName(), track_rsp.getTrack().getTrackId(), imageID);
 			 
 			for (Song s : foundSongs)
 				if (s.getTrackId() != recv_song.getTrackId())
 					foundSongs.add(recv_song);
 			
 			if (foundSongs.size() == 0)
-				foundSongs.add(recv_song);
-			
+				foundSongs.add(recv_song);   	 	
+       	 	
+	     	
 			return null;
 		}
-
     }
 }

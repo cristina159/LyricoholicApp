@@ -5,29 +5,23 @@ public class Song {
 	private String title;
 	private String albumName;
 	private String artistName;
-	private String thumbnailUrl;
 	private String lyrics;
+
 	private int trackId; 
     private int imageID;
-	private int year;
+	
 	
 	public Song(){
 		this.title = "";
 	}
-    
-	public Song(String name, String thumbnailUrl, int imageID, int year){
-    	this.title = name;
-    	this.thumbnailUrl = thumbnailUrl;
-    	this.imageID = imageID;
-    	this.year = year;
-    }
 
-	public Song(String name, String lyrics, String albumName, String artistName, int trackId){
+	public Song(String name, String lyrics, String albumName, String artistName, int trackId, int imageID){
     	this.title = name;
 		this.lyrics = lyrics;
     	this.albumName = albumName;
     	this.artistName = artistName;
     	this.trackId = trackId;
+    	this.imageID = imageID;
 	}
 	
 	@Override
@@ -44,14 +38,6 @@ public class Song {
 
 	public void setTitle(String name) {
 		this.title = name;
-	}
-	
-	public String getThumbnailUrl() {
-		return thumbnailUrl;
-	}
-
-	public void setThumbnailUrl(String thumbnailUrl) {
-		this.thumbnailUrl = thumbnailUrl;
 	}
 
 	public String getArtistName(){
@@ -77,15 +63,6 @@ public class Song {
 	
 	public void setLyrics(String lyrics){
 		this.lyrics = lyrics;
-	}
-	
-	
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
 	}
 
     public int getImageResource(){
