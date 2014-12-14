@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
 			
 			List<Track> tracks = null;
 			try{
-				tracks = musicMatch.searchTracks(null, null, null, lyrics, 1, 10, true);
+				tracks = musicMatch.searchTracks(null, null, null, lyrics, "DESC", "DESC", 1, 15, true);
 			}catch (Exception e){
 				errorMessage = "Encountered a problem";
 				e.printStackTrace();

@@ -65,6 +65,9 @@ public final class Constants {
 
     public static final String QUERY_LYRICS = "q_lyrics";
     
+    public static final String SORT_ARTIST_RATING = "s_artist_rating";
+    
+    public static final String SORT_TRACK_RATING = "s_track_rating";
     /**
      * A constant field to denote the value of TRACK_ID in the KV mapping.
      */
