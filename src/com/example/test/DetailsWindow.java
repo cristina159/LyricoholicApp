@@ -14,6 +14,8 @@ public class DetailsWindow extends Activity{
 
 	private RatingBar ratingBar;
 	Song song;
+	double raiting = 0.5;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	  
@@ -58,7 +60,8 @@ public class DetailsWindow extends Activity{
     		
     		public void onRatingChanged(RatingBar ratingBar, float rating,	boolean fromUser) {
      
-    			Toast.makeText(getBaseContext(), String.valueOf(ratingBar.getRating()), Toast.LENGTH_LONG).show();
+    			raiting = (double)ratingBar.getRating();
+    			Toast.makeText(getBaseContext(), String.valueOf(raiting), Toast.LENGTH_LONG).show();
     			//send the raiting to server
     		}
     	});
