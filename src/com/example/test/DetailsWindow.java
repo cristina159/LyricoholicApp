@@ -1,20 +1,22 @@
 package com.example.test;
+import io.socket.SocketIO;
+
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 
 import com.example.test.model.Song;
 public class DetailsWindow extends Activity{
 
 	private RatingBar ratingBar;
 	Song song;
-	double raiting = 0.5;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +55,23 @@ public class DetailsWindow extends Activity{
     public void addListenerOnRatingBar() {
     	 
     	ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-    	
-    	//if rating value is changed,
-    	//display the current rating value in the result (textview) automatically
+
     	ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
     		
     		public void onRatingChanged(RatingBar ratingBar, float rating,	boolean fromUser) {
      
-    			raiting = (double)ratingBar.getRating();
-    			Toast.makeText(getBaseContext(), String.valueOf(raiting), Toast.LENGTH_LONG).show();
-    			//send the raiting to server
+                try {  
+                	SocketIO socket = ConnectionTask.getSocket();
+                	JSONObject json = new JSONObject();           
+					json.putOpt("artist", song.getArtistName());
+	                json.putOpt("song", song.getTitle());
+					json.putOpt("rating", rating);  
+					socket.emit("user rating", json);
+				} catch (Exception e) {
+					Toast.makeText(getBaseContext(), "Error sending rating", Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+				}
+    			Toast.makeText(getBaseContext(), "Rating " + String.valueOf(rating) + " sent", Toast.LENGTH_LONG).show();
     		}
     	});
     	

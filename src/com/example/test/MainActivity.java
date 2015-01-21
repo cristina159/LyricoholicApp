@@ -24,10 +24,10 @@ import com.example.test.model.Song;
 
 public class MainActivity extends Activity {
 
-	String lyrics;
+	static String lyrics;
 	static ArrayList<Song> foundSongs = new ArrayList<Song>();
-	boolean isPressed;
-	MusixMatch musicMatch = null;
+	static boolean isPressed;
+	static MusixMatch musicMatch = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,43 +42,17 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
             	 EditText eText = (EditText) findViewById(R.id.editTextLyrics);
             	 lyrics =  eText.getText().toString();
-
-            	 new LongOperation().execute("");
+            	 new MusicMatchTask().execute("");
             	
             }
         };
-        
+        new ConnectionTask().execute();
         Button btn =(Button) findViewById(R.id.searchButton);
         btn.setOnClickListener(searchBtnListener);
     }
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-	
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 	
 	@Override
-	protected void onRestart() {
-		super.onRestart();
-	}
-	
-	@Override
-	protected void onStop() {
+	public void onStop() {
 		super.onStop();
 	}
 	
@@ -99,7 +73,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
-    protected class LongOperation extends AsyncTask<String, Void, String> {
+    protected class MusicMatchTask extends AsyncTask<String, Void, String> {
     	
     	private String errorMessage = "No lyrics found";
     	
@@ -125,7 +99,7 @@ public class MainActivity extends Activity {
 					continue;
 				}
 				String photoName = "ic_launcher";
-	        	int imageID = getResources().getIdentifier(photoName, "drawable", getPackageName()); //TODO
+	        	int imageID = getResources().getIdentifier(photoName, "drawable", getPackageName());
 	        	Song recv_song = new Song(trackData.getTrackName(), lyricResponse.getLyricsBody(), 
 	        			trackData.getAlbumName(), trackData.getArtistName(), trackData.getTrackId(), imageID);
 				foundSongs.add(recv_song); 	
@@ -146,4 +120,5 @@ public class MainActivity extends Activity {
 	    		Toast.makeText(getBaseContext(), errorMessage, Toast.LENGTH_LONG).show();
 	    }
     }
+    
 }
